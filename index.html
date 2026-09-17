@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aayush — Creative Developer</title>
+    <meta name="description" content="Portfolio of Aayush, a Creative Developer crafting digital experiences that blur the line between art and technology.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Albert+Sans:ital,wght@0,100..900;1,100..900&family=Fragment+Mono:ital@0;1&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <main class="hero" id="hero">
+        <!-- Layer 1 — Base Portrait -->
+        <div class="portrait base" aria-hidden="true"></div>
+
+        <!-- Layer 2 — Reveal Portrait (soft circular cursor mask) -->
+        <div class="portrait reveal" id="reveal" aria-hidden="true"></div>
+
+        <!-- Layer 3 — Technical Grid + Large Circle -->
+        <div class="grid-overlay" aria-hidden="true">
+            <div class="grid-circle"></div>
+        </div>
+
+        <!-- Layer 4 — Headline & Copy -->
+        <div class="content">
+            <div class="content-inner">
+                <span class="eyebrow anim-item" style="--i:0">Creative Developer</span>
+                <h1 class="headline anim-item" style="--i:1">Aayush</h1>
+                <p class="intro anim-item" style="--i:2">
+                    I craft digital experiences that blur<br>
+                    the line between art and technology.
+                </p>
+                <p class="tagline anim-item" style="--i:2.5">Design · Code · Create</p>
+                <a href="https://wa.me/917751903836?text=Hi%20Aayush%2C%20I%20would%20like%20to%20discuss%20a%20project%20with%20you." target="_blank" class="cta anim-item" style="--i:3" id="ctaBtn">
+                    Get in Touch
+                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none"
+                         stroke="currentColor" stroke-width="2.2"
+                         stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M7 17L17 7"/>
+                        <path d="M7 7h10v10"/>
+                    </svg>
+                </a>
+            </div>
+        </div>
+
+        <!-- Layer 5 — Navigation -->
+        <nav class="topnav anim-item" style="--i:4" id="topnav">
+            <span class="topnav-logo">aayush</span>
+            <div class="topnav-links">
+                <a href="#" id="workBtn">Work</a>
+                <a href="#" id="aboutBtn">About</a>
+                <a href="#" id="contactBtn">Contact</a>
+            </div>
+            <a href="https://wa.me/917751903836?text=Hi%20Aayush%2C%20I%20would%20like%20to%20discuss%20a%20project%20with%20you." target="_blank" class="topnav-cta">Let's Talk</a>
+        </nav>
+
+        <!-- Cursor ring (visual indicator for the reveal lens) -->
+        <div class="cursor-ring" id="cursorRing"></div>
+    </main>
+
+    <!-- About Me Modal -->
+    <div class="modal-overlay" id="aboutModal">
+        <div class="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+            <!-- Close button -->
+            <button class="modal-close" id="modalClose" aria-label="Close">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none"
+                     stroke="currentColor" stroke-width="2"
+                     stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M18 6L6 18"/>
+                    <path d="M6 6l12 12"/>
+                </svg>
+            </button>
+
+            <div class="modal-body">
+                <!-- Left: photo -->
+                <div class="modal-photo">
+                    <img src="Young_man_looking_at_camera_2K_20260916124953.jpeg" alt="Aayush">
+                </div>
+
+                <!-- Right: info -->
+                <div class="modal-info">
+                    <span class="modal-label">About Me</span>
+                    <h2 class="modal-title" id="modalTitle">Aayush</h2>
+                    <p class="modal-role">Creative Developer</p>
+
+                    <div class="modal-divider"></div>
+
+                    <p class="modal-text">
+                        I'm a passionate Creative Developer who thrives at the intersection of 
+                        design and technology. With a sharp eye for detail and a love for clean code, 
+                        I build immersive digital experiences that captivate and inspire.
+                    </p>
+                    <p class="modal-text">
+                        From interactive web experiences to polished user interfaces, 
+                        I believe every pixel matters. My work is driven by curiosity, 
+                        fueled by creativity, and grounded in solid engineering.
+                    </p>
+
+                    <div class="modal-stats">
+                        <div class="modal-stat">
+                            <span class="modal-stat-num">3+</span>
+                            <span class="modal-stat-label">Years Exp.</span>
+                        </div>
+                        <div class="modal-stat">
+                            <span class="modal-stat-num">25+</span>
+                            <span class="modal-stat-label">Projects</span>
+                        </div>
+                        <div class="modal-stat">
+                            <span class="modal-stat-num">15+</span>
+                            <span class="modal-stat-label">Clients</span>
+                        </div>
+                    </div>
+
+                    <div class="modal-skills">
+                        <span class="skill-tag">UI/UX Design</span>
+                        <span class="skill-tag">Web Development</span>
+                        <span class="skill-tag">Creative Coding</span>
+                        <span class="skill-tag">Interaction Design</span>
+                        <span class="skill-tag">Product Design</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Work Modal -->
+    <div class="modal-overlay" id="workModal">
+        <div class="modal modal-wide" role="dialog" aria-modal="true" aria-labelledby="workModalTitle">
+            <button class="modal-close" id="workModalClose" aria-label="Close">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none"
+                     stroke="currentColor" stroke-width="2"
+                     stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M18 6L6 18"/>
+                    <path d="M6 6l12 12"/>
+                </svg>
+            </button>
+            <div class="modal-info" style="padding:44px 48px;">
+                <span class="modal-label">Portfolio</span>
+                <h2 class="modal-title" id="workModalTitle">My Work</h2>
+                <p class="modal-role" style="margin-bottom:28px;">Selected projects & designs</p>
+                <div class="work-grid" id="workGrid">
+                    <!-- Screenshots will be loaded here by JS -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Contact Modal -->
+    <div class="modal-overlay" id="contactModal">
+        <div class="modal" role="dialog" aria-modal="true" aria-labelledby="contactModalTitle">
+            <button class="modal-close" id="contactModalClose" aria-label="Close">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none"
+                     stroke="currentColor" stroke-width="2"
+                     stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M18 6L6 18"/>
+                    <path d="M6 6l12 12"/>
+                </svg>
+            </button>
+            <div class="modal-info" style="padding:52px 48px; text-align:center; align-items:center;">
+                <span class="modal-label" style="padding-left:0;">Get in Touch</span>
+                <h2 class="modal-title" id="contactModalTitle">Let's Connect</h2>
+                <p class="modal-text" style="max-width:400px; text-align:center;">Have a project in mind or just want to say hello? Reach out through any of these channels.</p>
+                <div class="contact-cards">
+                    <a href="mailto:aayushkumarnayak31@gmail.com" class="contact-card">
+                        <div class="contact-card-icon">
+                            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                                <rect x="2" y="4" width="20" height="16" rx="2"/>
+                                <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/>
+                            </svg>
+                        </div>
+                        <span class="contact-card-label">Email</span>
+                        <span class="contact-card-value">aayushkumarnayak31@gmail.com</span>
+                    </a>
+                    <a href="https://wa.me/917751903836" target="_blank" class="contact-card">
+                        <div class="contact-card-icon">
+                            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M3 21l1.65-3.8a9 9 0 1 1 3.4 2.9L3 21"/>
+                                <path d="M9 10a.5.5 0 0 0 1 0V9a.5.5 0 0 0-1 0v1Zm0 0a5 5 0 0 0 5 5m0 0a.5.5 0 0 0 0-1h-1a.5.5 0 0 0 0 1h1Z"/>
+                            </svg>
+                        </div>
+                        <span class="contact-card-label">WhatsApp</span>
+                        <span class="contact-card-value">+91 77519 03836</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

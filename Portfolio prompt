@@ -1,0 +1,153 @@
+# Prompt — Build the Portfolio
+
+Use these 2 local images in the project root:
+- `/Young_man_looking_at_camera_2K_20260916124953.jpeg` → **Base image** (normal editorial portrait)
+- `/Man_with_digital_face_overlay_2K_20260916124705.jpeg` → **Reveal image** (digital/cybernetic overlay)
+
+Customise these values:
+- **[YOUR NAME]**: Aayush
+- **[YOUR HEADLINE]**: Creative Developer
+- **[YOUR INTRO LINE]**: I craft digital experiences that blur the line between art and technology.
+- **[YOUR TAGLINE]**: Design · Code · Create
+- **[YOUR CTA LINK]**: mailto:hello@aayush.dev
+
+---
+
+## THE BRIEF
+
+Build a premium full-screen personal portfolio hero using vanilla HTML, CSS, and JavaScript. Use a single `index.html`, `style.css`, and `script.js`. No frameworks, no build tools, no npm — just static files that can be opened directly in a browser.
+
+The experience is **ONE focused hero only**. It begins as a high-key pale-blue editorial portrait and reveals an aligned liquid-glass anatomical/digital version through a **soft circular cursor/touch mask**. Do not add generic portfolio sections, cards, skill badges, gradients, tech-logo clouds, dark cyberpunk styling, canvas, WebGL, animation libraries, or unnecessary packages.
+
+---
+
+## ASSETS
+
+Use these local assets exactly:
+- `Young_man_looking_at_camera_2K_20260916124953.jpeg` → base portrait (shown by default)
+- `Man_with_digital_face_overlay_2K_20260916124705.jpeg` → reveal portrait (shown inside the cursor circle)
+
+Both images share the same framing and background. The base and reveal images are pixel-aligned pairs.
+
+---
+
+## VISUAL DIRECTION
+
+Light editorial / technical system:
+- **Paper background**: `#edf5ff`
+- **Ink color** (text): near-black `#0a0e17`
+- **Soft ink**: `#3a4150` for body text
+- **Muted ink**: `#6b7588` for labels
+- **Grid lines**: pale blue-grey technical grid, color `rgba(160, 178, 205, 0.22)`, size ~72px
+- **One large fine-line circle** in the background, 1px border, `rgba(160, 178, 205, 0.28)`, ~62vmin diameter, centered on the portrait
+- **White pill buttons** with subtle box-shadow for CTA and nav
+- **Albert Sans** (Google Fonts) for display/body — weight 900 for headline, 350 for body
+- **Fragment Mono** (Google Fonts) for nav links, labels, and small text
+- **Primary easing**: `cubic-bezier(0.16, 1, 0.3, 1)`
+
+---
+
+## HERO LAYERS
+
+Create a `100dvh` hero with `position: relative`, `isolation: isolate`, `overflow: hidden`, `min-width: 320px`, `touch-action: none`.
+
+**Layer order (z-index low → high):**
+1. **Base portrait** — full-screen background image, always visible
+2. **Reveal portrait** — full-screen background image, hidden by default, revealed through a soft radial-gradient CSS mask that follows the cursor
+3. **Technical grid + large circle** — pale blue-grey grid lines + one large decorative circle, `pointer-events: none`
+4. **Headline and copy** — positioned left side (the images have the person on the right, leaving space on the left for text)
+5. **Navigation** — top bar with logo, links, and CTA pill button
+
+Both portrait layers are **absolute full-screen background layers** with identical `background-position: center`, `background-repeat: no-repeat`, `background-size: cover`. They must **never shift** relative to each other.
+
+---
+
+## CURSOR REVEAL EFFECT (Most Important Feature)
+
+The reveal portrait layer uses a **CSS `mask-image` with `radial-gradient`** that follows the mouse cursor:
+
+```css
+mask-image: radial-gradient(circle 190px at [mouseX]px [mouseY]px, rgba(0,0,0,1) 60%, rgba(0,0,0,0) 100%);
+```
+
+**Behavior:**
+- On `pointerenter` → smoothly grow the reveal circle radius from 0 to ~190px
+- On `pointermove` → update the center position of the radial gradient (with smooth interpolation, easing factor ~0.13)
+- On `pointerleave` → smoothly shrink the radius back to 0
+- On touch devices → same behavior with `touchstart`, `touchmove`, `touchend`
+- Use `requestAnimationFrame` for the animation loop
+- Interpolate both position AND radius smoothly (no snapping)
+- The feathered edge (60% → 100% in the gradient) creates a soft liquid-glass boundary
+
+**Custom cursor ring:**
+- A small circle (28px) with a thin border (`1.5px solid rgba(10, 14, 23, 0.25)`) that follows the mouse with the same smooth interpolation
+- On hovering interactive elements (links, buttons), the ring grows to 52px
+- Hidden on mobile (`display: none` below 767px)
+- System cursor is hidden (`cursor: none` on body)
+
+---
+
+## CONTENT LAYOUT
+
+**Left side (over the lighter background area of the portrait):**
+```
+[Eyebrow]     Creative Developer    (Fragment Mono, 0.78rem, uppercase, with a small dash before it)
+[Headline]    Aayush                (Albert Sans, clamp(4.2rem, 10vw, 8.5rem), weight 900, letter-spacing -0.045em)
+[Intro]       I craft digital...    (Albert Sans, 1.08rem, weight 350, color #3a4150)
+[Tagline]     Design · Code · Create (Fragment Mono, 0.76rem, color #6b7588)
+[CTA Button]  Get in Touch →        (Fragment Mono, white pill, box-shadow, 100px border-radius)
+```
+
+**Navigation (top bar, full width):**
+```
+[Logo: "aayush"]                    [Work]  [About]  [Contact]                    [Let's Talk pill button]
+```
+
+---
+
+## ENTRANCE ANIMATION
+
+Each content element fades in from below with staggered delays:
+```css
+.anim-item {
+    opacity: 0;
+    transform: translateY(22px);
+    animation: enterUp 0.75s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    animation-delay: calc(0.25s + var(--i, 0) * 0.12s);
+}
+```
+Use CSS custom property `--i` on each element to control stagger order (0, 1, 2, 3, 4).
+
+---
+
+## RESPONSIVE
+
+- **Desktop (>1024px):** Full layout, cursor reveal active, all nav links visible
+- **Tablet (≤1024px):** Reduced padding, smaller content area
+- **Mobile portrait (≤767px):** Hide nav links, hide cursor ring, restore system cursor, content moves to bottom of screen, larger grid circle (80vmin), smaller headline
+- **Mobile landscape (≤767px landscape):** Content returns to center-aligned
+
+---
+
+## DO NOT
+
+- Do NOT add extra sections (about, projects, contact pages, footer)
+- Do NOT use dark/cyberpunk themes
+- Do NOT use canvas, WebGL, or animation libraries
+- Do NOT use gradients on text or buttons
+- Do NOT add skill badges, tech logos, or social icons
+- Do NOT use any framework or build tool
+- Do NOT shift the portraits relative to each other — they must stay perfectly aligned
+
+---
+
+## FILE STRUCTURE
+
+```
+Portfolio/
+├── index.html                                              (single page)
+├── style.css                                               (all styles)
+├── script.js                                               (cursor reveal logic)
+├── Young_man_looking_at_camera_2K_20260916124953.jpeg      (base)
+└── Man_with_digital_face_overlay_2K_20260916124705.jpeg    (reveal)
+```
