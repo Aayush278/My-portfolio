@@ -297,29 +297,21 @@ body {
 
     .topnav {
         padding: 16px 20px;
+        flex-wrap: wrap;
     }
 
     .topnav-links {
         display: flex;
-        position: fixed;
-        bottom: 24px;
-        left: 50%;
-        transform: translateX(-50%);
-        background: rgba(255, 255, 255, 0.85);
-        backdrop-filter: blur(12px);
-        -webkit-backdrop-filter: blur(12px);
-        padding: 14px 28px;
-        border-radius: 100px;
-        box-shadow: 0 4px 24px rgba(10, 14, 23, 0.12);
-        z-index: 100;
+        width: 100%;
+        justify-content: center;
         gap: 24px;
-        border: 1px solid rgba(160, 178, 205, 0.2);
+        order: 3;
+        margin-top: 12px;
     }
     .topnav-links a {
-        font-size: 0.85rem;
+        font-size: 0.8rem;
         font-weight: 500;
         color: var(--ink);
-        letter-spacing: 0.05em;
     }
 
     .topnav-cta {
